@@ -3,6 +3,7 @@
 // This gets changed from the theme settings
 
 @theme-tabsizing: ~'theme-@{ui-theme-name}-tabsizing';
+@theme-animate: ~'theme-@{ui-theme-name}-animate';
 @theme-dockButtons: ~'theme-@{ui-theme-name}-dock-buttons';
 @theme-stickyHeaders: ~'theme-@{ui-theme-name}-sticky-headers';
 @theme-closeButton: ~'theme-@{ui-theme-name}-tab-close-button';
@@ -77,6 +78,26 @@
 
 }
 
+
+// Animations ------------------------------
+
+[@{theme-animate}="on"] {
+
+  atom-workspace {
+    animation: colors 2s linear infinite;
+  }
+
+  // Hide docks when not open
+  // .atom-dock-inner:not(.atom-dock-open) {
+  //   display: none;
+  // }
+  //
+  // // Hide toggle buttons
+  // .atom-dock-toggle-button {
+  //   display: none;
+  // }
+
+}
 
 // Hide docks toggle buttons ------------------------------
 

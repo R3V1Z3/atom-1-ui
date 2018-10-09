@@ -1,5 +1,5 @@
 root = document.documentElement
-themeName = 'one-dark-ui'
+themeName = 'atom-1-ui'
 
 
 module.exports =
@@ -12,6 +12,9 @@ module.exports =
 
     atom.config.observe "#{themeName}.tabCloseButton", (value) ->
       setTabCloseButton(value)
+
+    atom.config.observe "#{themeName}.animate", (value) ->
+      setAnimations(value)
 
     atom.config.observe "#{themeName}.hideDockButtons", (value) ->
       setHideDockButtons(value)
@@ -61,6 +64,17 @@ setTabCloseButton = (tabCloseButton) ->
 unsetTabCloseButton = ->
   root.removeAttribute("theme-#{themeName}-tab-close-button")
 
+
+# Animations -----------------------
+
+setAnimations = (animate) ->
+  if animate
+    root.setAttribute("theme-#{themeName}-animate", 'on')
+  else
+    unsetAnimations()
+
+unsetAnimations = ->
+  root.removeAttribute("theme-#{themeName}-animate")
 
 # Dock Buttons -----------------------
 

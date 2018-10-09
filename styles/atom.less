@@ -6,63 +6,33 @@ html {
 	font-size: @font-size;
 }
 
-html::before,
-html::after,
-body::before,
-body::after {
-	content: "⍟";
-	font-weight: 900;
-	color: rgba(0,0,0,0.3);
-	text-shadow:
-		0 0 2px black,
-		0 0 4px antiquewhite,
-		1px 1px 3px black;
-	font-size: 30px;
-	position: absolute;
-	height: 30px;
-	width: 30px;
-	top: -10px;
-	left: 0;
-}
-
-html::after {
-	top: -10px;
-	left: unset;
-	right: -10px;
-}
-
-body::before {
-	top: unset;
-	bottom: 17px;
-}
-
-body::after {
-	top: unset;
-	bottom: 17px;
-	left: unset;
-	right: -10px;
-}
-
 body {
-	background: #ddd;
-	box-shadow: inset 0 0 30px #aaa;
+	background-color: #ddd;
+	box-shadow: inset 0 0 30px #888;
+	padding: 60px;
 }
 
+// 70s color animation
 @keyframes colors {
-  0% { filter: blur(0.85px) sepia(30%) contrast(0.7) brightness(1.2) hue-rotate(0deg); }
+  0% { filter: blur(1px) sepia(30%) contrast(0.7) brightness(1.2) hue-rotate(0deg); }
   2% { filter: blur(1px) sepia(32%) contrast(0.7) brightness(1.2) hue-rotate(10deg); }
-  40% { filter: blur(0.75px) sepia(30%) contrast(0.7) brightness(1.2) hue-rotate(25deg); }
+  40% { filter: blur(1.25px) sepia(30%) contrast(0.7) brightness(1.2) hue-rotate(25deg); }
   50% { filter: blur(1px) sepia(40%) contrast(0.7) brightness(1.2) hue-rotate(0deg); }
-  70% { filter: blur(1.2px) sepia(40%) contrast(0.75) brightness(1.2) hue-rotate(15deg); }
-  100% { filter: blur(0.8px) sepia(30%) contrast(0.7) brightness(1.2) hue-rotate(0deg); }
+  70% { filter: blur(1.4px) sepia(40%) contrast(0.75) brightness(1.2) hue-rotate(15deg); }
+  100% { filter: blur(1px) sepia(30%) contrast(0.7) brightness(1.2) hue-rotate(0deg); }
 }
+
+/*
+	disabled by default
+	copy-paste this into style.less in config folder to easily enable
+*/
+// atom-workspace {
+//   animation: colors 2s linear infinite;
+// }
 
 atom-workspace {
-	margin: 50px 50px;
 	padding: 8px 8px 24px 8px;
-	height: 90vh;
-	border-radius: 70px;
-	animation: colors 2s linear infinite;
+	border-radius: 50px;
 	background-color: #111;
 	box-shadow:
 		0 0 20px black,
@@ -73,6 +43,7 @@ atom-workspace {
 	filter: blur(1px) sepia(30%) contrast(0.8) brightness(1.2);
 }
 
+// soft gradient overlay and box-shadow for inside edges
 atom-workspace::after {
 	content: "";
 	z-index: 2;
@@ -83,7 +54,71 @@ atom-workspace::after {
 	width: 100%;
 	height: 100%;
 	box-shadow:
+		inset 0 0 300px rgba(0,0,0,0.5),
 		inset 0 0 50px black;
+}
+
+// unicode screws
+html::before,
+html::after,
+body::before,
+body::after {
+	content: "⍟";
+	z-index: 1;
+	pointer-events: none;
+	font-weight: 900;
+	color: rgba(0,0,0,0.3);
+	text-shadow:
+		0 0 2px black,
+		0 0 4px antiquewhite,
+		1px 1px 3px black;
+	font-size: 30px;
+	line-height: 15px;
+	position: absolute;
+	text-align: justify;
+	height: 20px;
+	width: 20px;
+	border-radius: 50%;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	top: 10px;
+	left: 10px;
+}
+
+// top left screw
+html::before {
+	box-shadow:
+		0 0 10px black,
+		inset 0 0 20px red,
+		350px -100px 200px 300px rgba(255,100,50, 0.15);
+}
+
+// top right screw
+html::after {
+	top: 10px;
+	left: unset;
+	right: 10px;
+}
+
+// bottom left screw
+body::before {
+	top: unset;
+	bottom: 10px;
+	border-radius: 50%;
+	box-shadow:
+		0 0 10px black,
+		inset 0 0 20px red,
+		0 0 200px 80px rgba(255,100,50, 0.5);
+}
+
+// bottom right screw
+body::after {
+	top: unset;
+	bottom: 10px;
+	left: unset;
+	right: 10px;
+	box-shadow:
+		0 0 10px black,
+		-150px 0 100px 80px rgba(255,255,255, 0.125);
 }
 
 // Scrollbars ------------------------------------
