@@ -1,0 +1,142 @@
+* {
+	box-sizing: border-box;
+}
+
+html {
+	font-size: @font-size;
+}
+
+html::before,
+html::after,
+body::before,
+body::after {
+	content: "⍟";
+	font-weight: 900;
+	color: rgba(0,0,0,0.3);
+	text-shadow:
+		0 0 2px black,
+		0 0 4px antiquewhite,
+		1px 1px 3px black;
+	font-size: 30px;
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	top: -10px;
+	left: 0;
+}
+
+html::after {
+	top: -10px;
+	left: unset;
+	right: -10px;
+}
+
+body::before {
+	top: unset;
+	bottom: 17px;
+}
+
+body::after {
+	top: unset;
+	bottom: 17px;
+	left: unset;
+	right: -10px;
+}
+
+body {
+	background: #ddd;
+	box-shadow: inset 0 0 30px #aaa;
+}
+
+@keyframes colors {
+  0% { filter: blur(0.85px) sepia(30%) contrast(0.7) brightness(1.2) hue-rotate(0deg); }
+  2% { filter: blur(1px) sepia(32%) contrast(0.7) brightness(1.2) hue-rotate(10deg); }
+  40% { filter: blur(0.75px) sepia(30%) contrast(0.7) brightness(1.2) hue-rotate(25deg); }
+  50% { filter: blur(1px) sepia(40%) contrast(0.7) brightness(1.2) hue-rotate(0deg); }
+  70% { filter: blur(1.2px) sepia(40%) contrast(0.75) brightness(1.2) hue-rotate(15deg); }
+  100% { filter: blur(0.8px) sepia(30%) contrast(0.7) brightness(1.2) hue-rotate(0deg); }
+}
+
+atom-workspace {
+	margin: 50px 50px;
+	padding: 8px 8px 24px 8px;
+	height: 90vh;
+	border-radius: 70px;
+	animation: colors 2s linear infinite;
+	background-color: #111;
+	box-shadow:
+		0 0 20px black,
+		0 0 0px 15px #806259,
+		0 0 15px 20px rgba(0,0,0,0.25),
+		0 0 0px 40px #806259,
+		0 0 2px 42px black;
+	filter: blur(1px) sepia(30%) contrast(0.8) brightness(1.2);
+}
+
+atom-workspace::after {
+	content: "";
+	z-index: 2;
+	position: absolute;
+	pointer-events: none;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	box-shadow:
+		inset 0 0 50px black;
+}
+
+// Scrollbars ------------------------------------
+
+.scrollbars-visible-always {
+	::-webkit-scrollbar {
+		width: 10px;
+		height: 10px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: @scrollbar-background-color;
+	}
+
+	::-webkit-scrollbar-thumb {
+		border-radius: 5px;
+		border: 3px solid @scrollbar-background-color;
+		background: @scrollbar-color;
+		background-clip: content-box;
+	}
+
+	::-webkit-scrollbar-corner {
+		background: @scrollbar-background-color;
+	}
+
+	::-webkit-scrollbar-thumb:vertical:active {
+		border-radius: 0;
+		border-left-width: 0;
+		border-right-width: 0;
+	}
+
+	::-webkit-scrollbar-thumb:horizontal:active {
+		border-radius: 0;
+		border-top-width: 0;
+		border-bottom-width: 0;
+	}
+
+	atom-text-editor {
+		::-webkit-scrollbar-track {
+			background: @scrollbar-background-color-editor;
+		}
+		::-webkit-scrollbar-corner {
+			background: @scrollbar-background-color-editor;
+		}
+		::-webkit-scrollbar-thumb {
+			border-color: @scrollbar-background-color-editor;
+			background: @scrollbar-color-editor;
+		}
+	}
+}
+
+// TODO: Move to a better place, not sure where it gets used
+.caret {
+  border-top: 5px solid #fff;
+  margin-top: -1px;
+}
